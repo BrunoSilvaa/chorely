@@ -1,0 +1,74 @@
+Table User {
+  id Int [primary key]
+  name String
+  email String [unique]
+  password String
+  picture String
+  groups Group
+  created_at DateTime
+  updated_at DateTime
+  deleted_at DateTime
+}
+
+Table Group {
+  id Int [primary key]
+  name String
+  admins User
+  users User
+  categories Category
+  tasks Task
+  created_at DateTime
+  updated_at DateTime
+  deleted_at DateTime
+  created_by User
+  updated_by User
+}
+
+Table Task {
+  id Int [primary key]
+  title String
+  description String
+  status StatusTask
+  dueDate DateTime
+  assigned_to User
+  group Group
+  category Category
+  created_at DateTime
+  updated_at DateTime
+  created_by User
+  updated_by User
+}
+
+enum StatusTask {
+  pending
+  in_progress
+  done
+}
+
+Table Category {
+  id Int [primary key]
+  name String
+  icon String
+  color String
+  subcategories SubCategory
+  created_at DateTime
+  updated_at DateTime
+}
+
+Table SubCategory {
+  id Int [primary key]
+  name String
+  icon String
+  color String
+  category Category
+  created_at DateTime
+  updated_at DateTime
+}
+
+
+Ref: Group.users <> User.id
+Ref: Group.categories <> Category.id
+Ref: SubCategory.category > Category.subcategories
+Ref: Task.category > Category.id
+Ref: Task.group > Group.id
+Ref: Task.assigned_to <> User.id
