@@ -15,5 +15,7 @@ model Group {
     updatedById Int @map("updated_by_id")
     updatedBy User @relation("UpdatedGroups", fields: [updatedById], references: [id])
 
+    tasksGroup Task[] @relation("TaskGroup")
+
     @@map("groups")
 }

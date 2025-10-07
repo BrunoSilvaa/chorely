@@ -14,5 +14,10 @@ model User {
     createdGroups Group[] @relation("CreatedGroups")
     updatedGroups Group[] @relation("UpdatedGroups")
 
+    //Task relations
+    createdTasks Task[] @relation("CreatedTasks")
+    updatedTasks Task[] @relation("UpdatedTasks")
+    tasksAssignedTo Task[] @relation("TasksAssignedTo")
+
     @@map("users")
 }

@@ -1,5 +1,28 @@
 model Task {
   id Int @id @default(autoincrement())
-  name String
-  category String
+  title String @db.VarChar(100)
+  description String?
+  status StatusTask @default(pending)
+  dueDate DateTime @map("due_date")
+  
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  createdById Int @map("created_by_id")
+  createdBy User @relation("CreatedTasks", fields: [createdById], references: [id])
+
+  updatedById Int @map("updated_by_id")
+  updatedBy User @relation("UpdatedTasks", fields: [updatedById], references: [id])
+
+  assignedTo User[] @relation("TasksAssignedTo")
+
+  groupId Int @map("group_id")
+  group Group @relation("TaskGroup", fields: [groupId], references: [id])
+
+}
+
+enum StatusTask {
+  pending 
+  inProgress @map("in_progress")
+  done
 }
