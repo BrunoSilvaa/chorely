@@ -18,7 +18,11 @@ model Task {
 
   groupId Int @map("group_id")
   group Group @relation("TaskGroup", fields: [groupId], references: [id])
+  
+  categoryId Int?
+  category Category? @relation("TasksCategory", fields: [categoryId], references: [id])
 
+  @@map("tasks")
 }
 
 enum StatusTask {

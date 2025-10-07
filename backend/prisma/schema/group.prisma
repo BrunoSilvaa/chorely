@@ -17,5 +17,7 @@ model Group {
 
     tasksGroup Task[] @relation("TaskGroup")
 
+    categories Category[] @relation("GroupsCategory")
+
     @@map("groups")
 }

@@ -1,0 +1,20 @@
+model Category {
+    id Int @id @default(autoincrement())
+    name String @db.VarChar(100)
+    description String?
+    icon String? @db.VarChar(50)
+    color String? @db.VarChar(50)
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    parentCategoryId Int?
+    parentCategory Category? @relation("Subcategories", fields: [parentCategoryId], references: [id])
+
+    subcategories Category[] @relation("Subcategories")
+
+    tasksOfCategory Task[] @relation("TasksCategory")
+
+    groupsOfCategory Group[] @relation("GroupsCategory")
+
+    @@map("categories")
+}
