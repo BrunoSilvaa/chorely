@@ -13,8 +13,9 @@ Table User {
 Table Group {
   id Int [primary key]
   name String
+  picture String
   admins User
-  users User
+  members User
   categories Category
   tasks Task
   created_at DateTime
@@ -48,27 +49,20 @@ enum StatusTask {
 Table Category {
   id Int [primary key]
   name String
+  description String
   icon String
   color String
-  subcategories SubCategory
-  created_at DateTime
-  updated_at DateTime
-}
-
-Table SubCategory {
-  id Int [primary key]
-  name String
-  icon String
-  color String
-  category Category
+  subcategories Category
+  parent_category Int
   created_at DateTime
   updated_at DateTime
 }
 
 
-Ref: Group.users <> User.id
+Ref: Group.members <> User.id
 Ref: Group.categories <> Category.id
-Ref: SubCategory.category > Category.subcategories
+Ref: Category.id > Category.subcategories
+Ref: Category.id - Category.parent_category
 Ref: Task.category > Category.id
 Ref: Task.group > Group.id
 Ref: Task.assigned_to <> User.id
