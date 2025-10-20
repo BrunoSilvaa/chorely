@@ -9,10 +9,8 @@ export class TasksService {
 
   constructor(private readonly prisma: PrismaService) {}
 
-  async create(createTaskDto: CreateTaskDto): Promise<Task> {
-    return this.prisma.task.create({ 
-      data: createTaskDto,
-    });
+  create(createTaskDto: CreateTaskDto) {
+    return "  This action adds a new task";
   }
 
   async findAll(): Promise<Task[]> {

@@ -27,16 +27,4 @@ export class CreateTaskDto {
     @IsNumber()
     @IsNotEmpty()
     category: number;
-
-    @IsDate()
-    created_at: Date;
-
-    @IsDate()
-    updated_at: Date;
-
-    @IsNumber()
-    createdBy: number;
-    
-    @IsNumber()
-    updatedBy: number;
 }
