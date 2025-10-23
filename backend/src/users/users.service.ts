@@ -29,6 +29,9 @@ export class UsersService {
         adminsOfGroups: true, 
         membersOfGroups: true
       },
+      where: {
+        deletedAt: null,
+      },
     });
 
     return plainToInstance(UserResponseDto, users);
@@ -36,7 +39,7 @@ export class UsersService {
 
   async findOne(id: number): Promise<UserResponseDto | null> {
     const user = await this.prisma.user.findUnique({
-      where: { id },
+      where: { id, deletedAt: null },
       select: {id: true, email: true, name: true, picture: true, adminsOfGroups: true, membersOfGroups: true},
     });
 
