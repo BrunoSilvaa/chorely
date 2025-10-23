@@ -57,8 +57,9 @@ export class UsersService {
   }
 
   async remove(id: number): Promise<UserResponseDto> {
-    return await this.prisma.user.delete({
+    return await this.prisma.user.update({
       where: { id },
+      data: { deletedAt: new Date() },
       select: {id: true, email: true, name: true, picture: true},
     });
   }
