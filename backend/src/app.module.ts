@@ -5,9 +5,10 @@ import { TasksModule } from './tasks/tasks.module';
 import { CategoriesModule } from './categories/categories.module';
 import { GroupsModule } from './groups/groups.module';
 import { UsersModule } from './users/users.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [TasksModule, CategoriesModule, GroupsModule, UsersModule],
+  imports: [TasksModule, CategoriesModule, GroupsModule, UsersModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
